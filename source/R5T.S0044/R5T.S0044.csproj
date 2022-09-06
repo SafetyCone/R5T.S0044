@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\R5T.F0027\source\R5T.F0027\R5T.F0027.csproj" />
+    <ProjectReference Include="..\..\..\R5T.F0028\source\R5T.F0028\R5T.F0028.csproj" />
+    <ProjectReference Include="..\..\..\R5T.F0029\source\R5T.F0029\R5T.F0029.csproj" />
+    <ProjectReference Include="..\..\..\R5T.F0030\source\R5T.F0030\R5T.F0030.csproj" />
+    <ProjectReference Include="..\..\..\R5T.L0017\source\R5T.L0017\R5T.L0017.csproj" />
+    <ProjectReference Include="..\..\..\R5T.T0141\source\R5T.T0141\R5T.T0141.csproj" />
+    <ProjectReference Include="..\..\..\R5T.T0144\source\R5T.T0144\R5T.T0144.csproj" />
+    <ProjectReference Include="..\..\..\R5T.T0145\source\R5T.T0145\R5T.T0145.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="global.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
