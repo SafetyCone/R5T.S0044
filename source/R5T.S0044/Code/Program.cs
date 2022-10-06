@@ -7,6 +7,11 @@ namespace R5T.S0044
     {
         static void Main()
         {
+            //Instances.LibraryOperations.PackAndPushToLocal();
+            //Instances.LibraryOperations.PackAndPushToLocalAndRemote();
+
+            Instances.ExecutableOperations.PublishToLocal();
+
             //Instances.Try.FirstPublish();
             //Instances.Try.FirstPack();
             //Instances.Try.FirstPush();
@@ -18,7 +23,7 @@ namespace R5T.S0044
             //Instances.Try.FirstZipOfFile();
             //Instances.Try.UploadFile();
             //Instances.Try.UnzipOfFile();
-            Instances.Try.DeployWebsiteByZipFile();
+            //Instances.Try.DeployWebsiteByZipFile();
         }
     }
 }

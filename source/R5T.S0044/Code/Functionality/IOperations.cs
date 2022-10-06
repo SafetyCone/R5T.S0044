@@ -12,7 +12,17 @@ namespace R5T.S0044
 	[FunctionalityMarker]
 	public partial interface IOperations : IFunctionalityMarker
 	{
-		public Dictionary<string, RemoteServerAuthentication> GetAwsRemoteServerAuthenticationsByFriendlyName()
+        public string GetNuGetApiKey()
+        {
+            var nugetAuthenticationJsonFilePath = @"C:\Users\David\Dropbox\Organizations\Rivet\Shared\Data\Secrets\Authentication-NuGet.json";
+
+            var nugetAuthentication = F0032.JsonOperator.Instance.LoadFromFile_Synchronous<NuGetAuthentication>(nugetAuthenticationJsonFilePath);
+
+            var apiKey = nugetAuthentication.API_Key;
+            return apiKey;
+        }
+
+        public Dictionary<string, RemoteServerAuthentication> GetAwsRemoteServerAuthenticationsByFriendlyName()
         {
             var awsRemoteServerConfigurationJsonFilePath = @"C:\Users\David\Dropbox\Organizations\David\Data\Secrets\Configuration-AWS Authentications.json";
 

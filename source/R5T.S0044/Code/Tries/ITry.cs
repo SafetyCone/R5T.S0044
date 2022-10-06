@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
+using R5T.F0000;
 using R5T.T0141;
 
 
@@ -40,6 +41,20 @@ namespace R5T.S0044
             var localTemporaryDirectoryPath = @"C:\Temp";
             var remoteTemporaryDirectoryPath = @"/home/ec2-user";
 
+            using var serviceProvider = F0028.Instances.ServicesOperator.BuildServiceProvider_Synchronous(services =>
+            {
+                services.AddLogging(logging =>
+                {
+                    logging
+                        .SetMinimumLevel(LogLevel.Debug)
+                        .AddConsole()
+                        ;
+                })
+                ;
+            });
+
+            var logger = serviceProvider.GetRequiredService<ILogger<Program>>();
+
             // Publish to local timestamped directory.
             var publicationBinariesOutputDirectoryPath = Instances.PublicationOperator.GetPublicationBinariesOutputDirectoryPath(
                             binariesDirectoryPath,
@@ -47,9 +62,13 @@ namespace R5T.S0044
 
             var timestampedBinariesDirectoryPath = Instances.PublicationOperator.GetTimestampedBinariesOutputDirectoryPath(publicationBinariesOutputDirectoryPath);
 
+            logger.LogInformation($"Publishing to local timestamped directory...\n\t{timestampedBinariesDirectoryPath}");
+
             F0027.Instances.DotnetPublishOperator.Publish(
                 projectFilePath,
                 timestampedBinariesDirectoryPath);
+
+            logger.LogInformation($"Published to local timestamped directory.\n\t{timestampedBinariesDirectoryPath}");
 
             // Archive locally.
             var localArchiveFilePath = F0002.Instances.PathOperator.GetFilePath(
@@ -58,9 +77,13 @@ namespace R5T.S0044
 
             F0000.Instances.FileSystemOperator.DeleteFile_OkIfNotExists(localArchiveFilePath);
 
+            logger.LogInformation($"Archiving to local file...\n\t{localArchiveFilePath}");
+
             ZipFile.CreateFromDirectory(
                 timestampedBinariesDirectoryPath,
                 localArchiveFilePath);
+
+            logger.LogInformation($"Archived to local file.\n\t{localArchiveFilePath}");
 
             // SFTP archive to remote.
             var awsRemoteServerAuthentication = Instances.Operations.GetTechnicalBlogRemoteServerAuthentication();
@@ -74,6 +97,8 @@ namespace R5T.S0044
                 connection =>
                 {
                     // Upload the file.
+                    logger.LogInformation($"Uploading archive file to remote server...\n\t{remoteArchiveFilePath}");
+
                     F0030.Instances.SftpOperator.InSftpContext_Connected_Synchronous(
                         connection,
                         sftpClient =>
@@ -82,30 +107,48 @@ namespace R5T.S0044
 
                             sftpClient.UploadFile(fileStream, remoteArchiveFilePath, true);
                         });
-                    
+
+                    logger.LogInformation($"Uploaded archive file to remote server.\n\t{remoteArchiveFilePath}");
+
                     F0030.Instances.SshOperator.InSshContext_Connected_Synchronous(
                         connection,
                         sshClient =>
                         {
+                            logger.LogInformation("Performing remote server commands...");
+
                             // Delete the directory, using SSH command.
+                            logger.LogInformation($"Deleting remote deploy directory...\n\t{remoteDeployDirectoryPath}");
+
                             var deleteDirectoryCommand = sshClient.RunCommand($"sudo rm -rf \"{remoteDeployDirectoryPath}\"");
 
+                            Instances.RemoteCommandOperator.LogCommandResult(deleteDirectoryCommand, logger);
+
                             // Unzip to the directory.
+                            logger.LogInformation($"Unzipping archive to remote deploy directory...\n\t{remoteArchiveFilePath}\n\t{remoteDeployDirectoryPath}");
+
                             var unzipCommand = sshClient.RunCommand($"sudo unzip -o \"{remoteArchiveFilePath}\" -d \"{remoteDeployDirectoryPath}\"");
 
-                            Console.WriteLine(unzipCommand.Result);
+                            Instances.RemoteCommandOperator.LogCommandResult(unzipCommand, logger);
 
-                            var changePermissionsCommand = sshClient.RunCommand($"sudo chmod +777 {remoteDeployDirectoryPath}");
+                            logger.LogInformation($"Changinge permissions on remote deploy directory...\n\t{remoteDeployDirectoryPath}");
+
+                            var changePermissionsCommand = sshClient.RunCommand($"sudo chmod -R +777 {remoteDeployDirectoryPath}");
+
+                            Instances.RemoteCommandOperator.LogCommandResult(changePermissionsCommand, logger);
 
                             // Restart the web server.
+                            logger.LogInformation("Restarting the webserver service...");
+
                             var restartCommand = sshClient.RunCommand($"sudo systemctl restart {remoteServiceName}");
 
-                            Console.WriteLine(restartCommand.Result);
+                            Instances.RemoteCommandOperator.LogCommandResult(restartCommand, logger);
 
                             // Check status of the web server.
+                            logger.LogInformation("Checking webserver service status...");
+
                             var statusCommand = sshClient.RunCommand($"sudo systemctl status {remoteServiceName}");
 
-                            Console.WriteLine(statusCommand.Result);
+                            Instances.RemoteCommandOperator.LogCommandResult(statusCommand, logger);
                         });
                 });
         }
@@ -684,7 +727,7 @@ namespace R5T.S0044
 
         public void FirstPush()
         {
-            var packageFilePath = @"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.L0023\source\R5T.L0023\bin\Release\R5T.L0023.1.0.0.nupkg";
+            var packageFilePath = @"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.T0147\source\R5T.T0147.T000\bin\Release\R5T.T0147.T000.1.0.0.nupkg";
 
             var packagesDirectoryPath = @"C:\Users\David\Dropbox\Organizations\Rivet\Shared\Packages";
 
@@ -695,7 +738,10 @@ namespace R5T.S0044
 
         public void FirstPack()
         {
-            var libraryProjectFilePath = Instances.ExampleProjectFilePaths.LibraryProject;
+            var libraryProjectFilePath =
+                //Instances.ExampleProjectFilePaths.LibraryProject
+                @"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.T0147\source\R5T.T0147.T000\R5T.T0147.T000.csproj"
+                ;
 
             var _ = F0027.Instances.DotnetPackOperator.Pack(libraryProjectFilePath);
         }
