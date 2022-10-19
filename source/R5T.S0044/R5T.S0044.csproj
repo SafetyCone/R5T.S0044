@@ -4,9 +4,6 @@
     <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="..\.editorconfig" Link=".editorconfig" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\..\R5T.F0027\source\R5T.F0027\R5T.F0027.csproj" />
     <ProjectReference Include="..\..\..\R5T.F0028\source\R5T.F0028\R5T.F0028.csproj" />
     <ProjectReference Include="..\..\..\R5T.F0029\source\R5T.F0029\R5T.F0029.csproj" />

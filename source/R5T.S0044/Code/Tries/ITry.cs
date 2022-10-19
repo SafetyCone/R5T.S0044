@@ -41,7 +41,7 @@ namespace R5T.S0044
             var localTemporaryDirectoryPath = @"C:\Temp";
             var remoteTemporaryDirectoryPath = @"/home/ec2-user";
 
-            using var serviceProvider = F0028.Instances.ServicesOperator.BuildServiceProvider_Synchronous(services =>
+            using var serviceProvider = F0028.Instances.ServicesOperator.BuildServiceProvider(services =>
             {
                 services.AddLogging(logging =>
                 {

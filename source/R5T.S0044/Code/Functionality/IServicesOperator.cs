@@ -12,7 +12,7 @@ namespace R5T.S0044
 	{
 		public ServiceProvider GetServices()
         {
-			var output = F0028.ServicesOperator.Instance.BuildServiceProvider_Synchronous(
+			var output = F0028.ServicesOperator.Instance.BuildServiceProvider(
 				F0035.ServicesOperator.Instance.AddLogging);
 
 			return output;

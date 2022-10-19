@@ -10,12 +10,15 @@ namespace R5T.S0044
 	[FunctionalityMarker]
 	public partial interface ILibraryOperations : IFunctionalityMarker
 	{
+		/// <summary>
+		/// Packs a project, and pushes to both the local directory and the remote NuGet package repositories.
+		/// </summary>
 		public void PackAndPushToLocalAndRemote()
 		{
 			/// Inputs.
 			var libraryProjectFilePaths = new[]
 			{
-				@"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.T0064\source\R5T.T0064\R5T.T0064.csproj",
+				@"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.F0028\source\R5T.F0028\R5T.F0028.csproj",
 			};
 
 			var packagesDirectoryPath = @"C:\Users\David\Dropbox\Organizations\Rivet\Shared\Packages";
@@ -51,7 +54,7 @@ namespace R5T.S0044
 				var packageName = projectName;
 
 				var packageFileNameStem = F0002.PathOperator.Instance.GetFileNameStem(packageFilePath);
-				var packageVersion = packageFileNameStem[packageName.Length..];
+				var packageVersion = packageFileNameStem[(packageName.Length - 1)..];
 
 				var url = $"https://www.nuget.org/packages/{packageName}/{packageVersion}#versions-body-tab";
 

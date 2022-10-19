@@ -1,6 +1,7 @@
 using System;
 
 using R5T.F0002;
+using R5T.F0034;
 
 
 namespace R5T.S0044
@@ -21,5 +22,6 @@ namespace R5T.S0044
         public static IServicesOperator ServicesOperator { get; } = S0044.ServicesOperator.Instance;
         public static ITry Try { get; } = S0044.Try.Instance;
         public static IUrlOperator UrlOperator { get; } = S0044.UrlOperator.Instance;
+        public static IWindowsExplorerOperator WindowsExplorerOperator { get; } = F0034.WindowsExplorerOperator.Instance;
     }
 }

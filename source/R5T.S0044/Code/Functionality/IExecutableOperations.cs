@@ -15,7 +15,7 @@ namespace R5T.S0044
 		public void PublishToLocal()
         {
 			/// Inputs.
-			var projectFilePath = @"C:\Code\DEV\Git\GitHub\davidcoats\D8S.C0002.Private\source\D8S.C0002\D8S.C0002.csproj";
+			var projectFilePath = @"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.C0003\source\R5T.C0003\R5T.C0003.csproj";
 
 
 			/// Run.
@@ -102,7 +102,9 @@ namespace R5T.S0044
                             timestampedBinariesDirectoryPath,
                             currentBinariesOutputDirectoryPath);
 
-                        logger.LogInformation($"Copyied timestamped directory to current directory.\n\tTimestamped directory:\n\t{currentBinariesOutputDirectoryPath}\n\tCurrent directory:\n\t{priorBinariesOutputDirectoryPath}");
+                        logger.LogInformation($"Copied timestamped directory to current directory.\n\tTimestamped directory:\n\t{currentBinariesOutputDirectoryPath}\n\tCurrent directory:\n\t{priorBinariesOutputDirectoryPath}");
+
+                        Instances.WindowsExplorerOperator.OpenDirectoryInExplorer(currentBinariesOutputDirectoryPath);
                     }
                 });
         }
