@@ -15,7 +15,12 @@ namespace R5T.S0044
 		public void PublishToLocal()
         {
 			/// Inputs.
-			var projectFilePath = @"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.C0003\source\R5T.C0003\R5T.C0003.csproj";
+			var projectFilePath =
+                //// Ithaca.
+                //@"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.C0003\source\R5T.C0003\R5T.C0003.csproj"
+                // Porto
+                @"C:\Code\DEV\Git\GitHub\davidcoats\D8S.S0001.Private\source\D8S.S0001\D8S.S0001.csproj"
+                ;
 
 
 			/// Run.

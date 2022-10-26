@@ -12,6 +12,12 @@ namespace R5T.S0044
 	[FunctionalityMarker]
 	public partial interface IOperations : IFunctionalityMarker
 	{
+        public void OpenBinariesDirectory()
+        {
+            Instances.WindowsExplorerOperator.OpenDirectoryInExplorer(
+                Instances.DirectoryPaths.CloudBinariesDirectoryPath);
+        }
+
         public string GetNuGetApiKey()
         {
             var nugetAuthenticationJsonFilePath = @"C:\Users\David\Dropbox\Organizations\Rivet\Shared\Data\Secrets\Authentication-NuGet.json";

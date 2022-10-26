@@ -24,6 +24,9 @@ namespace R5T.S0044
             //Instances.Try.UploadFile();
             //Instances.Try.UnzipOfFile();
             //Instances.Try.DeployWebsiteByZipFile();
+
+            /// Useful.
+            //Instances.Operations.OpenBinariesDirectory();
         }
     }
 }
