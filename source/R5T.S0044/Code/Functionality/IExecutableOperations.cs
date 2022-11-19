@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -12,19 +13,19 @@ namespace R5T.S0044
 	public partial interface IExecutableOperations : IFunctionalityMarker
 	{
 		/// Prior work: <see cref="ITry.FirstArchive"/>.
-		public void PublishToLocal()
+		public async Task PublishToLocal()
         {
 			/// Inputs.
 			var projectFilePath =
-                //// Ithaca.
-                //@"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.C0003\source\R5T.C0003\R5T.C0003.csproj"
-                // Porto
-                @"C:\Code\DEV\Git\GitHub\davidcoats\D8S.S0001.Private\source\D8S.S0001\D8S.S0001.csproj"
+                // Ithaca.
+                @"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.C0003\source\R5T.C0003\R5T.C0003.csproj"
+                //// Porto
+                //@"C:\Code\DEV\Git\GitHub\davidcoats\D8S.S0001.Private\source\D8S.S0001\D8S.S0001.csproj"
                 ;
 
 
 			/// Run.
-            F0028.Instances.ServicesOperator.InServicesContext_Synchronous(
+            await F0028.Instances.ServicesOperator.InServicesContext(
                 services =>
                 {
                     services.AddLogging(logging =>
@@ -36,7 +37,7 @@ namespace R5T.S0044
                     })
                     ;
                 },
-                services =>
+                async services =>
                 {
                     var logger = services.GetRequiredService<ILogger<ITry>>();
 
@@ -47,12 +48,12 @@ namespace R5T.S0044
                     var isLibrary = F0020.Instances.ProjectFileOperator.IsLibrary_Synchronous(projectFilePath);
                     if (isLibrary)
                     {
-                        throw new Exception("Not for libraries.");
+                        throw new Exception("This publish operations is not for libraries.");
                     }
                     else
                     {
                         // Is executable.
-                        logger.LogInformation("Project is an executable (not a library).");
+                        logger.LogInformation("(Good) Project is an executable, not a library.");
 
                         var executableProjectFilePath = projectFilePath;
 
@@ -65,7 +66,7 @@ namespace R5T.S0044
 
                         logger.LogInformation($"Publishing project to directory...\n\tPublish directory:\n\t{timestampedBinariesDirectoryPath}");
 
-                        F0027.Instances.DotnetPublishOperator.Publish(
+                        await Instances.PublishOperator.Publish(
                             projectFilePath,
                             timestampedBinariesDirectoryPath);
 

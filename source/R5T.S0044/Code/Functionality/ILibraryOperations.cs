@@ -18,10 +18,12 @@ namespace R5T.S0044
 			/// Inputs.
 			var libraryProjectFilePaths = new[]
 			{
+				@"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.NG0002\source\R5T.NG0002\R5T.NG0002.csproj",
+				@"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.T0143\source\R5T.T0143\R5T.T0143.csproj",
 				@"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.F0028\source\R5T.F0028\R5T.F0028.csproj",
 			};
 
-			var packagesDirectoryPath = @"C:\Users\David\Dropbox\Organizations\Rivet\Shared\Packages";
+			var packagesDirectoryPath = Instances.DirectoryPaths.LocalPackagesDirectoryPath;
 
 
 			/// Run.
@@ -54,7 +56,7 @@ namespace R5T.S0044
 				var packageName = projectName;
 
 				var packageFileNameStem = F0002.PathOperator.Instance.GetFileNameStem(packageFilePath);
-				var packageVersion = packageFileNameStem[(packageName.Length - 1)..];
+				var packageVersion = packageFileNameStem[(packageName.Length + 1)..];
 
 				var url = $"https://www.nuget.org/packages/{packageName}/{packageVersion}#versions-body-tab";
 
@@ -67,17 +69,15 @@ namespace R5T.S0044
 			/// Inputs.
 			var libraryProjectFilePaths = new[]
 			{
-				//@"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.NG0002\source\R5T.NG0002\R5T.NG0002.csproj",
-				//@"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.T0143\source\R5T.T0143\R5T.T0143.csproj",
+                //@"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.NG0002\source\R5T.NG0002\R5T.NG0002.csproj",
+                //@"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.T0143\source\R5T.T0143\R5T.T0143.csproj",
+				@"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.F0028\source\R5T.F0028\R5T.F0028.csproj",
 				//@"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.T0142\source\R5T.T0142\R5T.T0142.csproj",
 				//@"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.T0147\source\R5T.T0147.T000\R5T.T0147.T000.csproj",
 				//@"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.T0147\source\R5T.T0147.T001\R5T.T0147.T001.csproj",
-				@"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.T0132\source\R5T.T0132\R5T.T0132.csproj",
-				@"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.T0147\source\R5T.T0147\R5T.T0147.csproj",
+				//@"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.T0132\source\R5T.T0132\R5T.T0132.csproj",
+				//@"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.T0147\source\R5T.T0147\R5T.T0147.csproj",
 			};
-
-			var packagesDirectoryPath = @"C:\Users\David\Dropbox\Organizations\Rivet\Shared\Packages";
-
 
             /// Run.
             foreach (var libraryProjectFilePath in libraryProjectFilePaths)
@@ -86,12 +86,13 @@ namespace R5T.S0044
 
 				F0027.Instances.DotnetNugetPushOperator.Push_ToLocalDirectory(
 					packageFilePath,
-					packagesDirectoryPath);
+					Instances.DirectoryPaths.LocalPackagesDirectoryPath);
             }
 
 			/// Finish.
 			// Open the packages directory in Windows Explorer.
-			F0034.WindowsExplorerOperator.Instance.OpenDirectoryInExplorer(packagesDirectoryPath);
+			F0034.WindowsExplorerOperator.Instance.OpenDirectoryInExplorer(
+				Instances.DirectoryPaths.LocalPackagesDirectoryPath);
 		}
 	}
 }

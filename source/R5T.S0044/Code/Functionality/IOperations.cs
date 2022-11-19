@@ -12,6 +12,12 @@ namespace R5T.S0044
 	[FunctionalityMarker]
 	public partial interface IOperations : IFunctionalityMarker
 	{
+        public void OpenPackagesDirectory()
+        {
+            Instances.WindowsExplorerOperator.OpenDirectoryInExplorer(
+                Instances.DirectoryPaths.LocalPackagesDirectoryPath);
+        }
+
         public void OpenBinariesDirectory()
         {
             Instances.WindowsExplorerOperator.OpenDirectoryInExplorer(

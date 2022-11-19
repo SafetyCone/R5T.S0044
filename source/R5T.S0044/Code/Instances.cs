@@ -2,6 +2,7 @@ using System;
 
 using R5T.F0002;
 using R5T.F0034;
+using R5T.F0077;
 
 
 namespace R5T.S0044
@@ -17,6 +18,7 @@ namespace R5T.S0044
         public static IOperations Operations { get; } = S0044.Operations.Instance;
         public static IPathOperator PathOperator { get; } = F0002.PathOperator.Instance;
         public static IPublicationOperator PublicationOperator { get; } = S0044.PublicationOperator.Instance;
+        public static IPublishOperator PublishOperator { get; } = F0077.PublishOperator.Instance;
         public static IRemoteCommandOperator RemoteCommandOperator { get; } = S0044.RemoteCommandOperator.Instance;
         public static IRemoteServerFriendlyNames RemoteServerFriendlyNames { get; } = S0044.RemoteServerFriendlyNames.Instance;
         public static IServicesOperator ServicesOperator { get; } = S0044.ServicesOperator.Instance;

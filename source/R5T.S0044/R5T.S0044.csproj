@@ -11,6 +11,7 @@
     <ProjectReference Include="..\..\..\R5T.F0032\source\R5T.F0032\R5T.F0032.csproj" />
     <ProjectReference Include="..\..\..\R5T.F0034\source\R5T.F0034\R5T.F0034.csproj" />
     <ProjectReference Include="..\..\..\R5T.F0035\source\R5T.F0035\R5T.F0035.csproj" />
+    <ProjectReference Include="..\..\..\R5T.F0077\source\R5T.F0077\R5T.F0077.csproj" />
     <ProjectReference Include="..\..\..\R5T.L0017\source\R5T.L0017\R5T.L0017.csproj" />
     <ProjectReference Include="..\..\..\R5T.T0141\source\R5T.T0141\R5T.T0141.csproj" />
     <ProjectReference Include="..\..\..\R5T.T0144\source\R5T.T0144\R5T.T0144.csproj" />
