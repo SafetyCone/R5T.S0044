@@ -21,10 +21,12 @@ namespace R5T.S0044
                 @"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.C0003\source\R5T.C0003\R5T.C0003.csproj"
                 //// Porto
                 //@"C:\Code\DEV\Git\GitHub\davidcoats\D8S.S0001.Private\source\D8S.S0001\D8S.S0001.csproj"
+                //// Sulcis
+                //@"C:\Code\DEV\Git\GitHub\davidcoats\D8S.S0003.Private\source\D8S.S0003\D8S.S0003.csproj"
                 ;
 
 
-			/// Run.
+            /// Run.
             await F0028.Instances.ServicesOperator.InServicesContext(
                 services =>
                 {
