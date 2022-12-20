@@ -57,8 +57,8 @@ namespace R5T.S0044
 
             // Publish to local timestamped directory.
             var publicationBinariesOutputDirectoryPath = Instances.PublicationOperator.GetPublicationBinariesOutputDirectoryPath(
-                            binariesDirectoryPath,
-                            projectFilePath);
+                binariesDirectoryPath,
+                projectFilePath);
 
             var timestampedBinariesDirectoryPath = Instances.PublicationOperator.GetTimestampedBinariesOutputDirectoryPath(publicationBinariesOutputDirectoryPath);
 
@@ -92,7 +92,7 @@ namespace R5T.S0044
                 remoteTemporaryDirectoryPath,
                 archiveFileName);
 
-            F0030.Instances.SshOperator.InConnectionContext(
+            F0030.Instances.SshOperator.InConnectionContext_Synchronous(
                 awsRemoteServerAuthentication,
                 connection =>
                 {
@@ -130,7 +130,7 @@ namespace R5T.S0044
 
                             Instances.RemoteCommandOperator.LogCommandResult(unzipCommand, logger);
 
-                            logger.LogInformation($"Changinge permissions on remote deploy directory...\n\t{remoteDeployDirectoryPath}");
+                            logger.LogInformation($"Changing permissions on remote deploy directory...\n\t{remoteDeployDirectoryPath}");
 
                             var changePermissionsCommand = sshClient.RunCommand($"sudo chmod -R +777 {remoteDeployDirectoryPath}");
 
