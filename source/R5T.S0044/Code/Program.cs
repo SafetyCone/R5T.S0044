@@ -11,7 +11,7 @@ namespace R5T.S0044
             //Instances.LibraryOperations.PackAndPushToLocal();
             //Instances.LibraryOperations.PackAndPushToLocalAndRemote();
 
-            //await Instances.ExecutableOperations.PublishToLocal();
+            await Instances.ExecutableOperations.PublishToLocal();
 
             //Instances.Try.FirstPublish();
             //Instances.Try.FirstPack();
@@ -28,7 +28,7 @@ namespace R5T.S0044
             //Instances.Try.DeployWebsiteByZipFile();
 
             /// Useful.
-            Instances.Operations.OpenBinariesDirectory();
+            //Instances.Operations.OpenBinariesDirectory();
             //Instances.Operations.OpenPackagesDirectory();
         }
     }
