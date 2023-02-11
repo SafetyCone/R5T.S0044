@@ -31,7 +31,7 @@ namespace R5T.S0044
 		public string GetTimestampedBinariesOutputDirectoryPath(
 			string publicationBinariesOutputDirectoryPath)
         {
-			var nowLocal = F0000.Instances.NowOperator.GetNowLocal();
+			var nowLocal = F0000.Instances.NowOperator.GetNow_Local();
 
 			var yyyymmdd_hhmmss = F0000.Instances.DateTimeOperator.ToString_YYYYMMDD_HHMMSS(nowLocal);
 
