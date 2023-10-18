@@ -112,7 +112,7 @@ namespace R5T.S0044
 
                         logger.LogInformation($"Copied timestamped directory to current directory.\n\tTimestamped directory:\n\t{currentBinariesOutputDirectoryPath}\n\tCurrent directory:\n\t{priorBinariesOutputDirectoryPath}");
 
-                        Instances.WindowsExplorerOperator.OpenDirectoryInExplorer(currentBinariesOutputDirectoryPath);
+                        Instances.WindowsExplorerOperator._Platform.OpenDirectoryInExplorer(currentBinariesOutputDirectoryPath);
                     }
                 });
         }

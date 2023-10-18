@@ -14,13 +14,13 @@ namespace R5T.S0044
 	{
         public void OpenPackagesDirectory()
         {
-            Instances.WindowsExplorerOperator.OpenDirectoryInExplorer(
+            Instances.WindowsExplorerOperator._Platform.OpenDirectoryInExplorer(
                 Instances.DirectoryPaths.LocalPackagesDirectoryPath);
         }
 
         public void OpenBinariesDirectory()
         {
-            Instances.WindowsExplorerOperator.OpenDirectoryInExplorer(
+            Instances.WindowsExplorerOperator._Platform.OpenDirectoryInExplorer(
                 Instances.DirectoryPaths.CloudBinariesDirectoryPath);
         }
 

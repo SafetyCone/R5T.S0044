@@ -91,7 +91,7 @@ namespace R5T.S0044
 
 			/// Finish.
 			// Open the packages directory in Windows Explorer.
-			F0034.WindowsExplorerOperator.Instance.OpenDirectoryInExplorer(
+			F0034.WindowsExplorerOperator.Instance._Platform.OpenDirectoryInExplorer(
 				Instances.DirectoryPaths.LocalPackagesDirectoryPath);
 		}
 	}
