@@ -80,18 +80,18 @@ namespace R5T.S0044
 
                         var fileSystemOperator = F0000.Instances.FileSystemOperator;
 
-                        var currentDirectoryExists = fileSystemOperator.DirectoryExists(currentBinariesOutputDirectoryPath);
+                        var currentDirectoryExists = fileSystemOperator.Exists_Directory(currentBinariesOutputDirectoryPath);
                         if (currentDirectoryExists)
                         {
                             logger.LogInformation($"Deleting prior directory...\n\tPrior directory:\n\t{priorBinariesOutputDirectoryPath}");
 
-                            fileSystemOperator.DeleteDirectory_OkIfNotExists(priorBinariesOutputDirectoryPath);
+                            fileSystemOperator.Delete_Directory_OkIfNotExists(priorBinariesOutputDirectoryPath);
 
                             logger.LogInformation($"Deleted prior directory.\n\tPrior directory:\n\t{priorBinariesOutputDirectoryPath}");
 
                             logger.LogInformation($"Copying current directory to prior directory...\n\tCurrent directory:\n\t{currentBinariesOutputDirectoryPath}\n\tPrior directory:\n\t{priorBinariesOutputDirectoryPath}");
 
-                            fileSystemOperator.CopyDirectory(
+                            fileSystemOperator.Copy_Directory(
                                 currentBinariesOutputDirectoryPath,
                                 priorBinariesOutputDirectoryPath);
 
@@ -99,14 +99,14 @@ namespace R5T.S0044
 
                             logger.LogInformation($"Deleting current directory...\n\tCurrent directory:\n\t{priorBinariesOutputDirectoryPath}");
 
-                            fileSystemOperator.DeleteDirectory_OkIfNotExists(currentBinariesOutputDirectoryPath);
+                            fileSystemOperator.Delete_Directory_OkIfNotExists(currentBinariesOutputDirectoryPath);
 
                             logger.LogInformation($"Deleted current directory.\n\tCurrent directory:\n\t{priorBinariesOutputDirectoryPath}");
                         }
 
                         logger.LogInformation($"Copying timestamped directory to current directory...\n\tTimestamped directory:\n\t{currentBinariesOutputDirectoryPath}\n\tCurrent directory:\n\t{priorBinariesOutputDirectoryPath}");
 
-                        fileSystemOperator.CopyDirectory(
+                        fileSystemOperator.Copy_Directory(
                             timestampedBinariesDirectoryPath,
                             currentBinariesOutputDirectoryPath);
 

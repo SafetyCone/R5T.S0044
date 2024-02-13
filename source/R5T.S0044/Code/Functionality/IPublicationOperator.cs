@@ -11,7 +11,7 @@ namespace R5T.S0044
 		public string GetPriorBinariesOutputDirectoryPath(
 			string publicationBinariesOutputDirectoryPath)
 		{
-			var priorBinariesOutputDirectoryPath = Instances.PathOperator.GetDirectoryPath(
+			var priorBinariesOutputDirectoryPath = Instances.PathOperator.Get_DirectoryPath(
 				publicationBinariesOutputDirectoryPath,
 				Instances.DirectoryNames.Prior);
 
@@ -21,7 +21,7 @@ namespace R5T.S0044
 		public string GetCurrentBinariesOutputDirectoryPath(
 			string publicationBinariesOutputDirectoryPath)
         {
-			var currentBinariesOutputDirectoryPath = Instances.PathOperator.GetDirectoryPath(
+			var currentBinariesOutputDirectoryPath = Instances.PathOperator.Get_DirectoryPath(
 				publicationBinariesOutputDirectoryPath,
 				Instances.DirectoryNames.Current);
 
@@ -31,14 +31,14 @@ namespace R5T.S0044
 		public string GetTimestampedBinariesOutputDirectoryPath(
 			string publicationBinariesOutputDirectoryPath)
         {
-			var nowLocal = F0000.Instances.NowOperator.GetNow_Local();
+			var nowLocal = F0000.Instances.NowOperator.Get_Now_Local();
 
 			var yyyymmdd_hhmmss = F0000.Instances.DateTimeOperator.ToString_YYYYMMDD_HHMMSS(nowLocal);
 
 			// Just use the yyymmdd_hhmmss value since it can be a directory name.
 			var timestampedDirectoryName = yyyymmdd_hhmmss;
 
-			var timestampedBinariesOutputDirectoryPath = Instances.PathOperator.GetDirectoryPath(
+			var timestampedBinariesOutputDirectoryPath = Instances.PathOperator.Get_DirectoryPath(
 				publicationBinariesOutputDirectoryPath,
 				timestampedDirectoryName);
 
@@ -55,7 +55,7 @@ namespace R5T.S0044
 
 			var publicationDirectoryName = this.GetPublicationDirectoryName(publicationName);
 
-			var publicationBinariesOutputDirectoryPath = Instances.PathOperator.GetDirectoryPath(
+			var publicationBinariesOutputDirectoryPath = Instances.PathOperator.Get_DirectoryPath(
 				binariesOutputDirectoryPath,
 				publicationDirectoryName);
 

@@ -55,7 +55,7 @@ namespace R5T.S0044
 				// Open the package's URL.
 				var packageName = projectName;
 
-				var packageFileNameStem = F0002.PathOperator.Instance.GetFileNameStem(packageFilePath);
+				var packageFileNameStem = F0002.PathOperator.Instance.Get_FileNameStem(packageFilePath);
 				var packageVersion = packageFileNameStem[(packageName.Length + 1)..];
 
 				var url = $"https://www.nuget.org/packages/{packageName}/{packageVersion}#versions-body-tab";
