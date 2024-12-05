@@ -12,6 +12,7 @@ namespace R5T.S0044
         public static IConfigurationOperator ConfigurationOperator { get; } = S0044.ConfigurationOperator.Instance;
         public static IDirectoryNames DirectoryNames { get; } = S0044.DirectoryNames.Instance;
         public static IDirectoryPaths DirectoryPaths { get; } = S0044.DirectoryPaths.Instance;
+        public static F0027.IDotnetPublishOperator DotnetPublishOperator => F0027.DotnetPublishOperator.Instance;
         public static IExampleProjectFilePaths ExampleProjectFilePaths { get; } = S0044.ExampleProjectFilePaths.Instance;
         public static IExecutableOperations ExecutableOperations { get; } = S0044.ExecutableOperations.Instance;
         public static ILibraryOperations LibraryOperations { get; } = S0044.LibraryOperations.Instance;

@@ -722,7 +722,7 @@ namespace R5T.S0044
                             timestampedBinariesDirectoryPath,
                             currentBinariesOutputDirectoryPath);
 
-                        logger.LogInformation($"Copyied timestamped directory to current directory.\n\tTimestamped directory:\n\t{currentBinariesOutputDirectoryPath}\n\tCurrent directory:\n\t{priorBinariesOutputDirectoryPath}");
+                        logger.LogInformation($"Copied timestamped directory to current directory.\n\tTimestamped directory:\n\t{currentBinariesOutputDirectoryPath}\n\tCurrent directory:\n\t{priorBinariesOutputDirectoryPath}");
                     }
                 });
         }
@@ -750,9 +750,16 @@ namespace R5T.S0044
 
         public void FirstPublish()
         {
+            /// Inputs.
             var libraryProjectFilePath = Instances.ExampleProjectFilePaths.LibraryProject;
 
-            F0027.Instances.DotnetPublishOperator.Publish(libraryProjectFilePath);
+            var outputDirectoryPath = @"C:\Temp\publish\";
+
+
+            /// Run.
+            Instances.DotnetPublishOperator.Publish(
+                libraryProjectFilePath,
+                outputDirectoryPath);
         }
     }
 }
